@@ -18,5 +18,5 @@ class CartManager {
   }
 }
 
-const cartManager = new cartManager();
+const cartManager = new CartManager();
 export default cartManager;

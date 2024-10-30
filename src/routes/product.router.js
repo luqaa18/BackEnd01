@@ -1,9 +1,10 @@
 import { Router } from "express";
+import { requiredCategories } from "../middlewares/required.js";
 import ProductManager from "../managers/product.manager.js";
 const prodManager = new ProductManager("./products.json");
 
 const router = Router();
-
+//--------------ver productos
 router.get("/", async (req, res) => {
   try {
     const prods = await prodManager.getAll();
@@ -13,17 +14,19 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+//--------------ver productos por id
+router.get("/:pid", async (req, res) => {
   try {
-    const { id } = req.params;
-    const prod = await prodManager.getById(id);
+    const { pid } = req.params;
+    const prod = await prodManager.getById(pid);
     res.status(200).json(prod);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
 });
 
-router.post("/", async (req, res) => {
+//--------------crear producto
+router.post("/", [requiredCategories], async (req, res) => {
   try {
     const prod = await prodManager.create(req.body);
     res.status(201).json(prod);
@@ -32,30 +35,37 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.delete("/", async (req, res) => {
+//--------------actualizar producto
+router.put("/:pid", async (req, res) => {
   try {
-    await prodManager.deleteAll();
-    res.json({ message: "products deleted ok" });
+    const { pid } = req.params;
+    const prodUpd = await prodManager.update(req.body, pid);
+    res.status(200).json(prodUpd);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-router.delete("/:id", async (req, res) => {
+//--------------eliminar producto por id
+router.delete("/:pid", async (req, res) => {
   try {
-    const { id } = req.params;
-    const prodDel = await prodManager.delete(id);
-    res.status(200).json({ message: `product id: ${prodDel.id} deleted ok` });
+    const { pid } = req.params;
+    const prodDel = await prodManager.delete(pid);
+    res
+      .status(200)
+      .json({
+        message: `Se ha eliminado el producto con el siguiente id: ${prodDel.id}`,
+      });
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
 });
 
-router.put("/:id", async (req, res) => {
+//--------------eliminar todos los productos
+router.delete("/", async (req, res) => {
   try {
-    const { id } = req.params;
-    const prodUpd = await prodManager.update(req.body, id);
-    res.status(200).json(prodUpd);
+    await prodManager.deleteAll();
+    res.json({ message: "Se han eliminado todos los productos" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

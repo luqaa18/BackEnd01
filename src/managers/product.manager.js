@@ -21,11 +21,12 @@ export default class ProductManager {
     try {
       const product = {
         id: uuidv4(),
+        status: true,
         ...obj,
       };
       const products = await this.getAll();
       const prodExist = products.find((p) => p.id === product.id);
-      if (prodExist) throw new Error("product already exists");
+      if (prodExist) throw new Error("El producto ya existe");
       products.push(product);
       await fs.promises.writeFile(this.path, JSON.stringify(products));
       return product;
@@ -37,9 +38,10 @@ export default class ProductManager {
   async getById(id) {
     try {
       const products = await this.getAll();
-      if (!products.length > 0) throw new Error("list products is empty");
+      if (!products.length > 0)
+        throw new Error("La lista de productos está vacía");
       const product = products.find((product) => product.id === id);
-      if (!product) throw new Error("product not found");
+      if (!product) throw new Error("Producto no encontrado");
       return product;
     } catch (error) {
       throw new Error(error.message);
@@ -48,16 +50,11 @@ export default class ProductManager {
 
   async update(obj, id) {
     try {
-      //array de usuarios
       const products = await this.getAll();
-      //user encontrado
-      let prod = await this.getById(id); //si no lo encuentra, devuelve el error
-      // le asignamos los valores nuevos que legan por body
+      let prod = await this.getById(id);
       prod = { ...prod, ...obj };
-      //filtramos y sacamos el usuario original (linea 64)
       const newArray = products.filter((prod) => prod.id !== id);
       newArray.push(prod);
-      //lo guardamos en el json
       await fs.promises.writeFile(this.path, JSON.stringify(newArray));
       return prod;
     } catch (error) {
@@ -80,7 +77,8 @@ export default class ProductManager {
   async deleteAll() {
     try {
       const products = await this.getAll();
-      if (!products.length > 0) throw new Error("products is empty");
+      if (!products.length > 0)
+        throw new Error("No hay productos para eliminar");
       await fs.promises.unlink(this.path);
     } catch (error) {
       throw new Error(error);
