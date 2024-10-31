@@ -8,8 +8,8 @@ export const requiredCategories = (req, res, next) => {
     typeof req.body.code !== "string" ||
     req.body.price === undefined ||
     typeof req.body.price !== "number" ||
-    req.body.status === undefined ||
-    typeof req.body.status !== "boolean" ||
+    // req.body.status === undefined ||
+    // typeof req.body.status !== "boolean" ||
     req.body.stock === undefined ||
     typeof req.body.stock !== "number" ||
     req.body.category === undefined ||
@@ -18,3 +18,15 @@ export const requiredCategories = (req, res, next) => {
     res.status(500).json({ message: "campo o campos invalidos" });
   return next();
 };
+
+//PLANTILLA PRODUCTO
+/* 
+  {
+    "title":"",
+    "description":"",
+    "code":"",
+    "price":,
+    "stock":,
+    "category":"",
+  }
+*/

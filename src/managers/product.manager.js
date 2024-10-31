@@ -1,7 +1,8 @@
 import fs from "node:fs";
 import { v4 as uuidv4 } from "uuid";
+import path from "path";
 
-export default class ProductManager {
+class ProductManager {
   constructor(path) {
     this.path = path;
   }
@@ -85,3 +86,7 @@ export default class ProductManager {
     }
   }
 }
+
+export const prodMan = new ProductManager(
+  path.join(process.cwd(), "/data/products.json")
+);
