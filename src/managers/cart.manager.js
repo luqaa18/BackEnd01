@@ -76,5 +76,5 @@ class CartManager {
 }
 
 export const cartManager = new CartManager(
-  path.join(process.cwd(), "/data/carts.json")
+  path.join(process.cwd(), "/data/carrito.json")
 );
