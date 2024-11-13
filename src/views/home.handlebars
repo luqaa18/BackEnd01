@@ -1,0 +1,16 @@
+<h1 style="text-align:center">HOME</h1>
+<div style="display: flex; flex-wrap:wrap">
+  {{#each products}}
+    <div>
+      <ul>
+        <li>Producto: {{this.title}}</li>
+        <li>Codigo: {{this.code}}</li>
+        <li>Descripción: {{this.description}}</li>
+        <li>Precio: {{this.price}}</li>
+        <li>Stock: {{this.stock}}</li>
+        <li>Categoría: {{this.category}}</li>
+      </ul>
+    </div>
+  {{/each}}
+</div>
+
