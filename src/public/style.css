@@ -1,0 +1,35 @@
+/* *{
+    background-color: rgb(218, 138, 204);
+} */
+.borderBox {
+  border: 3px solid black;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+}
+
+.divContainer {
+  display: flex;
+  flex-wrap: wrap;
+  /* columns: 300px */
+}
+
+.delete-button {
+  align-items: center;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  /* width: 600px; */
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  input {
+    margin: 10px;
+  }
+}
+
+.containerForm {
+  width: 100%;
+}

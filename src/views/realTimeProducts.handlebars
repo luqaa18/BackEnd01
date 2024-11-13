@@ -1,4 +1,37 @@
 <h1 style="text-align:center">Real Time Products</h1>
 
+<div class="containerForm">
+  <form action="/realtimeproducts/add" method="post" class="formulario">
+    <input id="title" type="text" name="title" placeholder="Título" />
+    <input
+      id="description"
+      type="text"
+      name="description"
+      placeholder="Descripción"
+    />
+    <input id="category" type="text" name="category" placeholder="Categoría" />
+    <input id="code" type="text" name="code" placeholder="Código" />
+    <input id="price" type="number" name="price" placeholder="Precio" />
+    <input id="stock" type="number" name="stock" placeholder="Stock" />
+    <input id="add" type="submit" value="Agregar" />
+  </form>
+</div>
+
+<div class="divContainer">
+  {{#each products}}
+    <div class="borderBox">
+      <div>
+        <p>Producto: {{this.title}}</p>
+        <p>Codigo: {{this.code}}</p>
+        <p>Descripción: {{this.description}}</p>
+        <p>Precio: {{this.price}}</p>
+        <p>Stock: {{this.stock}}</p>
+        <p>Categoría: {{this.category}}</p>
+      </div>
+      <button class="delete-button" data-id="{{this.id}}">Eliminar</button>
+    </div>
+  {{/each}}
+</div>
+
 <script src="/socket.io/socket.io.js"></script>
 <script src="index.js"></script>

@@ -1,15 +1,15 @@
 <h1 style="text-align:center">HOME</h1>
-<div style="display: flex; flex-wrap:wrap">
+<div class="divContainer">
   {{#each products}}
-    <div>
-      <ul>
-        <li>Producto: {{this.title}}</li>
-        <li>Codigo: {{this.code}}</li>
-        <li>Descripción: {{this.description}}</li>
-        <li>Precio: {{this.price}}</li>
-        <li>Stock: {{this.stock}}</li>
-        <li>Categoría: {{this.category}}</li>
-      </ul>
+    <div class='borderBox'>
+      <div>
+        <p>Producto: {{this.title}}</p>
+        <p>Codigo: {{this.code}}</p>
+        <p>Descripción: {{this.description}}</p>
+        <p>Precio: {{this.price}}</p>
+        <p>Stock: {{this.stock}}</p>
+        <p>Categoría: {{this.category}}</p>
+      </div>
     </div>
   {{/each}}
 </div>
