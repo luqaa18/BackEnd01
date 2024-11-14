@@ -45,23 +45,22 @@ btnAdd.addEventListener("click", (e) => {
 
 // Escucha el evento de actualización de productos
 clientSocket.on("products", (products) => {
-  const productList = document.querySelector(".divContainer");
-  productList.innerHTML = "";
+  tbody.innerHTML = "";
   products.forEach((product) => {
-    const productDiv = document.createElement("div");
-    productDiv.classList.add("borderBox");
-    productDiv.innerHTML = `
-        <div>
-          <p>Producto: ${product.title}</p>
-          <p>Código: ${product.code}</p>
-          <p>Descripción: ${product.description}</p>
-          <p>Precio: ${product.price}</p>
-          <p>Stock: ${product.stock}</p>
-          <p>Categoría: ${product.category}</p>
-        </div>
-        <button class="delete-button" data-id="${product.id}">Eliminar</button>
+    const tbody = document.getElementById("tbody");
+    tbody.innerHTML += `
+        <tr id="product-${product.id}">
+          <td>
+            <p class="product-name">${product.title}</p>
+            <p class="product-details">${product.description}</p>
+          </td>
+          <td>${product.category}</td>
+          <td>${product.code}</td>
+          <td>$${product.price}</td>
+          <td>$${product.stock}</td>
+          <td><button class="delete-button" data-id="${product.id}">Eliminar</button></td>
+        </tr>
       `;
-    productList.appendChild(productDiv);
   });
 });
 
@@ -76,20 +75,21 @@ document.addEventListener("click", (event) => {
 // Escucha el evento de actualización de productos después de eliminar
 clientSocket.on("updateProducts", (updatedProducts) => {
   const productContainer = document.querySelector(".divContainer");
-  productContainer.innerHTML = ""; 
-
+  const tbody = document.getElementById("tbody");
+  tbody.innerHTML = "";
   updatedProducts.forEach((product) => {
-    productContainer.innerHTML += `
-      <div class="borderBox" id="product-${product.id}">
-        <div>
-          <p>Producto: ${product.title}</p>
-          <p>Código: ${product.code}</p>
-          <p>Descripción: ${product.description}</p>
-          <p>Precio: ${product.price}</p>
-          <p>Stock: ${product.stock}</p>
-          <p>Categoría: ${product.category}</p>
-        </div>
-        <button class="delete-button" data-id="${product.id}">Eliminar</button>
-      </div>`;
+    tbody.innerHTML += `
+        <tr id="product-${product.id}">
+          <td>
+            <p class="product-name">${product.title}</p>
+            <p class="product-details">${product.description}</p>
+          </td>
+          <td>${product.category}</td>
+          <td>${product.code}</td>
+          <td>$${product.price}</td>
+          <td>$${product.stock}</td>
+          <td><button class="delete-button" data-id="${product.id}">Eliminar</button></td>
+        </tr>
+      `;
   });
 });

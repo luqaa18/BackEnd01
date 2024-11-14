@@ -1,36 +1,59 @@
 <h1 style="text-align:center">Real Time Products</h1>
-
-<div class="containerForm">
-  <form action="/realtimeproducts/add" method="post" class="formulario">
-    <input id="title" type="text" name="title" placeholder="Título" />
-    <input
-      id="description"
-      type="text"
-      name="description"
-      placeholder="Descripción"
-    />
-    <input id="category" type="text" name="category" placeholder="Categoría" />
-    <input id="code" type="text" name="code" placeholder="Código" />
-    <input id="price" type="number" name="price" placeholder="Precio" />
-    <input id="stock" type="number" name="stock" placeholder="Stock" />
-    <input id="add" type="submit" value="Agregar" />
-  </form>
-</div>
-
-<div class="divContainer">
-  {{#each products}}
-    <div class="borderBox">
-      <div>
-        <p>Producto: {{this.title}}</p>
-        <p>Codigo: {{this.code}}</p>
-        <p>Descripción: {{this.description}}</p>
-        <p>Precio: {{this.price}}</p>
-        <p>Stock: {{this.stock}}</p>
-        <p>Categoría: {{this.category}}</p>
-      </div>
-      <button class="delete-button" data-id="{{this.id}}">Eliminar</button>
-    </div>
-  {{/each}}
+<div class="containerAll">
+  <div class="containerForm">
+    <h2>Ingreso de productos</h2>
+    <form action="/realtimeproducts/add" method="post" class="formulario">
+      <input id="title" type="text" name="title" placeholder="Título" />
+      <input
+        id="description"
+        type="text"
+        name="description"
+        placeholder="Descripción"
+      />
+      <input
+        id="category"
+        type="text"
+        name="category"
+        placeholder="Categoría"
+      />
+      <input id="code" type="text" name="code" placeholder="Código" />
+      <input id="price" type="number" name="price" placeholder="Precio" />
+      <input id="stock" type="number" name="stock" placeholder="Stock" />
+      <input id="add" type="button" value="Agregar" />
+    </form>
+  </div>
+  <div class="divContainer">
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Categoría</th>
+          <th>Código</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Eliminar productos</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        {{#each products}}
+          <tr id="product-{{this.id}}">
+            <td>
+              <p class="product-name">{{this.title}}</p>
+              <p class="product-details">{{this.description}}</p>
+            </td>
+            <td>{{this.category}}</td>
+            <td>{{this.code}}</td>
+            <td>{{this.price}}</td>
+            <td>{{this.stock}}</td>
+            <td><button
+                class="delete-button"
+                data-id="{{this.id}}"
+              >Eliminar</button></td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <script src="/socket.io/socket.io.js"></script>

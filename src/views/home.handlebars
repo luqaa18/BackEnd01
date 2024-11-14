@@ -1,16 +1,29 @@
 <h1 style="text-align:center">HOME</h1>
-<div class="divContainer">
-  {{#each products}}
-    <div class='borderBox'>
-      <div>
-        <p>Producto: {{this.title}}</p>
-        <p>Codigo: {{this.code}}</p>
-        <p>Descripción: {{this.description}}</p>
-        <p>Precio: {{this.price}}</p>
-        <p>Stock: {{this.stock}}</p>
-        <p>Categoría: {{this.category}}</p>
-      </div>
-    </div>
-  {{/each}}
-</div>
 
+<div class="divContainer">
+  <table class="product-table">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Categoría</th>
+        <th>Código</th>
+        <th>Precio</th>
+        <th>Stock</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+      {{#each products}}
+        <tr id="product-{{this.id}}">
+          <td>
+            <p class="product-name">{{this.title}}</p>
+            <p class="product-details">{{this.description}}</p>
+          </td>
+          <td>{{this.category}}</td>
+          <td>{{this.code}}</td>
+          <td>{{this.price}}</td>
+          <td>{{this.stock}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
