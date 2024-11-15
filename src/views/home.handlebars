@@ -1,7 +1,7 @@
 <h1 style="text-align:center">HOME</h1>
 
-<div class="divContainer">
-  <table class="product-table">
+<div class="divContainerHome">
+  <table class="product-table productTableHome">
     <thead>
       <tr>
         <th>Producto</th>
@@ -20,7 +20,7 @@
           </td>
           <td>{{this.category}}</td>
           <td>{{this.code}}</td>
-          <td>{{this.price}}</td>
+          <td><p>${{this.price}}</p></td>
           <td>{{this.stock}}</td>
         </tr>
       {{/each}}

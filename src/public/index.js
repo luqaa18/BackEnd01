@@ -57,7 +57,7 @@ clientSocket.on("products", (products) => {
           <td>${product.category}</td>
           <td>${product.code}</td>
           <td>$${product.price}</td>
-          <td>$${product.stock}</td>
+          <td>${product.stock}</td>
           <td><button class="delete-button" data-id="${product.id}">Eliminar</button></td>
         </tr>
       `;
@@ -87,7 +87,7 @@ clientSocket.on("updateProducts", (updatedProducts) => {
           <td>${product.category}</td>
           <td>${product.code}</td>
           <td>$${product.price}</td>
-          <td>$${product.stock}</td>
+          <td>${product.stock}</td>
           <td><button class="delete-button" data-id="${product.id}">Eliminar</button></td>
         </tr>
       `;

@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 * {
   font-family: "Lato";
+  box-sizing: border-box;
 }
 
 .containerAll {
@@ -17,12 +18,11 @@
   }
 }
 .divContainer {
-  display: flex;
   width: 70%;
 }
 
-.delete-button {
-  align-items: center;
+.productTableHome{
+  width: 100%;
 }
 
 .formulario {
@@ -44,10 +44,16 @@
 
 .product-table th,
 .product-table td {
-  padding: 15px;
+  padding: 5px;
   text-align: center;
   border-bottom: 1px solid #ddd;
-  vertical-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+
+  p{
+    margin: 0;
+
+  }
 }
 
 .product-table th {
@@ -55,8 +61,9 @@
   color: #333;
   text-transform: uppercase;
 }
-.product-table td {
-  height: fit-content;
+
+.product-table tr {
+  height: 50px;
 }
 
 .product-name {
@@ -67,8 +74,4 @@
 .product-details {
   font-size: 0.9em;
   color: #666;
-}
-
-.product-table tr {
-  height: 50px;
 }
