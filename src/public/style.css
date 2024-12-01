@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+* {
+  font-family: "Lato";
+  box-sizing: border-box;
+}
+
+.containerAll {
+  display: flex;
+  width: 100%;
+}
+.containerForm {
+  width: 30%;
+  top: 0;
+  position: sticky;
+  height: 100vh;
+  h2{
+    text-align: center;
+  }
+}
+.divContainer {
+  width: 70%;
+}
+
+.productTableHome{
+  width: 100%;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  input {
+    margin: 10px;
+  }
+}
+
+/* ------------ estilos tabla ---------------- */
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-table th,
+.product-table td {
+  padding: 5px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+  text-transform: uppercase;
+
+  p{
+    margin: 0;
+
+  }
+}
+
+.product-table th {
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.product-table tr {
+  height: 50px;
+}
+
+.product-name {
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.product-details {
+  font-size: 0.9em;
+  color: #666;
+}
