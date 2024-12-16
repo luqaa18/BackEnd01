@@ -1,33 +1,21 @@
 import { Router } from "express";
-import { cartManager } from "../managers/cart.manager.js";
+import * as controllers from '../controllers/cart.controllers.js'
+
 const router = Router();
 
-//crear un carrito nuevo
-router.post("/", async (req, res) => {
-  try {
-    res.json(await cartManager.createCart());
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-});
-//debe listar los productos que hayan en el carrito con esa id
-router.get("/:cid", async (req, res) => {
-  try {
-    const { cid } = req.params;
-    res.json(await cartManager.getCartById(cid));
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-});
-//debe agregar el producto elegido al carrito elegido
-router.post("/:cid/product/:pid", async (req, res) => {
-  try {
-    const { cid } = req.params;
-    const { pid } = req.params;
-    const prodFinal = await cartManager.addToCart(cid, pid);
-    res.json(prodFinal);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+//Llamar a todos los carritos
+router.get("/", controllers.getAll);
+//Llamar carrito por id
+router.get('/:idCart', controllers.getById);
+//Crear carrito
+router.post('/', controllers.create);
+//Actualizar carrito
+router.put('/:idCart', controllers.update);
+//Eliminar carrito
+router.delete('/:idCart', controllers.remove);
+//Agregar producto al carrito
+router.put('/:idCart/products/:idProd', controllers.addToCart);
+//Eliminar del carrito
+router.delete('/:idCart/products/:idProd', controllers.removeFromCart);
+
 export default router;
