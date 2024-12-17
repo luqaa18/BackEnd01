@@ -7,7 +7,7 @@ export const getAll = async (req, res, next) => {
         res.json({
             results: response.docs,
             info: {
-                // status: results==response.docs? "success" : 'error',
+                status: response.docs? "success" : 'error',
                 payload: response.limit,
                 totalPages: response.totalPages,
                 prevPage: response.prevPage,
