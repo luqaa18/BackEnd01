@@ -1,9 +1,12 @@
 import { productDao } from "../daos/mongodb/product.daos.js";
 import { CustomError } from "../utils/error.custom.js";
+import fs from 'fs'
+import path from 'path'
 
-export const getAll = async () => {
+
+export const getAll = async (page, limit, query, sort) => {
     try {
-        return await productDao.getAll();
+        return await productDao.getAll(page, limit, query, sort);
     } catch (error) {
         throw (error)
     }
@@ -43,7 +46,7 @@ export const remove = async (id) => {
     try {
         const delProd = await productDao.delete(id);
         if (!delProd) throw new CustomError('Error al eliminar el prducto', 400);
-        return delProd;
+        return `El producto con ID ${delProd._id} ha sido eliminado`;
     } catch (error) {
         throw (error)
     }

@@ -1,13 +1,18 @@
 import { productModel } from "./models/product.model.js";
 
- class ProductDaoMongo {
-  constructor(model){
+class ProductDaoMongo {
+  constructor(model) {
     this.model = model
   }
 
-  async getAll() {
+  async getAll(page = 1, limit = 10, query = {}, sort) {
     try {
-      return await this.model.find({})
+      // const filter = title ? { 'title': title } : {};
+      const filter = { ...query };
+      if (filter.title) filter.title = { $regex: filter.title, $options: 'i' };
+      let sortOrder = {};
+      if (sort) sortOrder.price = sort === 'asc' ? 1 : sort === 'desc' ? -1 : null;
+      return await this.model.paginate(filter, { page, limit, sort: sortOrder })
     } catch (error) {
       throw new Error(error);
     }
@@ -34,8 +39,7 @@ import { productModel } from "./models/product.model.js";
 
   async update(id, obj) {
     try {
-      return await this.model.findByIdAndUpdate(id, obj, { new: true });  // ---> doc actualizado
-      // return await this.model.updateOne(id, obj) --> { info.... }
+      return await this.model.findByIdAndUpdate(id, obj, { new: true });
     } catch (error) {
       throw new Error(error);
     }

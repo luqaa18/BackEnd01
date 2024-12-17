@@ -17,4 +17,7 @@ router.put("/:idProd", controllers.update);
 //--------------eliminar producto por id
 router.delete("/:idProd", controllers.remove);
 
+
+
+
 export default router;
